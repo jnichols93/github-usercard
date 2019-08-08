@@ -33,6 +33,7 @@ axios.get('https://api.github.com/users/jnichols93')
 */
 
 const followersArray = [
+  'https://api.github.com/users/NicholasTruson',
   'https://api.github.com/users/rleslie1015',
   'https://api.github.com/users/brandonharris177',
   'https://api.github.com/users/DanielWallen87',
