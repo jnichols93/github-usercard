@@ -97,11 +97,17 @@ function cardMaker(i){
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
+  const expand = document.createElement('span');
   ///class assignments
   card.classList.add('card');
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   userName.classList.add('username');
+  expand.classList.add('button');
+  //event Listener
+  expand.addEventListener('click', (e)=>{
+    card.classList.toggle('card-open');
+  })
 // set content
   name.textContent = i.name;
   image.src = i.avatar_url;
@@ -113,12 +119,13 @@ function cardMaker(i){
   followers.textContent = `Followers: ${i.followers}`;
   following.textContent = `following: ${i.following}`;
   bio.textContent = `Bio ${i.bio}`;
-
+  expand.textContent = 'show me the money';
   //appending
   card.append(image);
   card.append(cardInfo);
   cardInfo.append(name);
   cardInfo.append(userName);
+  card.append(expand);
   cardInfo.append(location);
   cardInfo.append(profile);
   profile.append(location);
@@ -126,6 +133,7 @@ function cardMaker(i){
   cardInfo.append(followers);
   cardInfo.append(following);
   cardInfo.append(bio);
+  
 console.log(card);
 return card;
 }
