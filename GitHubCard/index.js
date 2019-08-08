@@ -2,12 +2,15 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-const cards = document.querySelector('.cards');
 
-axios.get('https://api.github.com/users/jnichols93') .then(myData => {
-  const myCard = cardMaker(myData.data);
-  cards.append(myCard);
-});
+
+axios.get('https://api.github.com/users/jnichols93')
+  .then (i => {
+    const card = cardMaker(i.data);
+    const cards = document.querySelector('.cards');
+    cards.appendChild(card);
+    return cards;
+  })
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -29,17 +32,22 @@ axios.get('https://api.github.com/users/jnichols93') .then(myData => {
           user, and adding that card to the DOM.
 */
 
-const followersArray = [ 
-  tetondan,
-  dustinmyers,
-  justsml,
-  luishrd,
-  bigknell];
-  followersArray.forEach(handle =>{
-    axios.get('https://api.github.com/users/'+handle).then(myInfo =>{const newCard = createCard(myInfo.data);
-  cards.append(myInfo);
-});
-  });
+// const followersArray = [
+//   'brandonharris177',
+//   'DanielWallen87',
+//   'juarezfrench',
+//   'mchrupcala',
+//   'Krishan-Nattar',
+//   'tetondan',
+//   'dustinmyers',
+//   'justsml',
+//   'bigknell',
+// ];
+//   followersArray.forEach(handle =>{
+//     axios.get('https://api.github.com/users/'+handle).then(myData =>{const myCard = createCard(myData.data);
+//   cards.append(myCard);
+// });
+//   });
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -87,30 +95,30 @@ function cardMaker(i){
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   userName.classList.add('username');
-
+// set content
   name.textContent = i.name;
-  image.src = obj.avatar_url;
+  image.src = i.avatar_url;
   userName.textContent = i.login;
   location.textContent = `Location:${i.location}`;
   profile.textContent = `Profile`;
   profileAlink.href = i.html_url;
-  profileAlink.textContent = `i.html_url`;
+  profileAlink.textContent = i.url;
   followers.textContent = `Followers: ${i.followers}`;
   following.textContent = `following: ${i.following}`;
   bio.textContent = `Bio ${i.bio}`;
 
   //appending
   card.append(image);
-  card.append(CardInfo);
+  card.append(cardInfo);
   cardInfo.append(name);
   cardInfo.append(userName);
   cardInfo.append(location);
   cardInfo.append(profile);
-  profile.append(profile);
+  profile.append(location);
   profile.append(profileAlink);
   cardInfo.append(followers);
   cardInfo.append(following);
   cardInfo.append(bio);
-
+console.log(card);
 return card;
 }
